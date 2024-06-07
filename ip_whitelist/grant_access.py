@@ -3,7 +3,7 @@ import csv, os
 whitelist_dict = {}
 
 def fill_whitelist_dict():
-    with open('ip_whitelist\whitelist.csv', mode='r') as whitelist:
+    with open('./ip_whitelist/whitelist.csv', mode='r') as whitelist:
         whitelist_dict = csv.DictReader(whitelist)
         for row in whitelist_dict:
             print(row)
