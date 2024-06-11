@@ -1,3 +1,2 @@
 ip,port,user,access
-localhost,5000,server,true
-192.168.20.91,5000,memin,true
+192.168.1.122,5000,memin,true

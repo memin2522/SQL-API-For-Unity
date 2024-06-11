@@ -10,7 +10,7 @@ def create_app():
     app = Flask(__name__)
 
     app.config.from_prefixed_env()
-    grant_access.fill_whitelist_dict()
+    ##grant_access.fill_whitelist_dict()
     
     db.init_app(app)
     app.register_blueprint(main)
