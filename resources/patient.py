@@ -56,14 +56,9 @@ def put_patient(patient_id):
         
         query_set_part = ", ".join(fields_and_values)
         querySQL =f"UPDATE patient SET {query_set_part} WHERE id = {patient_id};"
-        return querySQL
+        ##return querySQL
         cursor.execute(querySQL) 
         db.commit()
-
-        if cursor.rowcount == 0:
-            return jsonify({"error": "Patient not found"}), 404
-            
-        return jsonify({"error": "No data provided to update"}), 400
         
     except Exception as e:
         db.rollback()
