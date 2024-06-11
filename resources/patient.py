@@ -10,7 +10,7 @@ from prototipe_app.db import get_db
 blp = Blueprint("Patients", __name__)
 
 @blp.get("/patient/<string:patient_id>")
-def get(self, patient_id):
+def get(patient_id):
     db = get_db()
     cursor = db.cursor(dictionary=True)
     try:
@@ -25,7 +25,7 @@ def get(self, patient_id):
         cursor.close()
 
 @blp.delete("/patient/<string:patient_id>")    
-def delete(self, patient_id):
+def delete(patient_id):
     db = get_db()
     cursor = db.cursor(dictionary=True)
     try:
@@ -39,7 +39,7 @@ def delete(self, patient_id):
             cursor.close()
 
 @blp.put("/patient/<string:patient_id>")       
-def put(self, patient_id):
+def put(patient_id):
     db = get_db()
     cursor = db.cursor(dictionary=True)
     try:
