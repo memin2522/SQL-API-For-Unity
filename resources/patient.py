@@ -46,21 +46,16 @@ def put_patient(patient_id):
         data = request.get_json()
         allowed_fields = ['registration', 'firstName', 'lastName', 'dateOfBirth', 'militaryStatus', 'militaryRank']
 
-        fields_query = []
-        values = []
-
+        query = ""
         for field, value in data.items():
             if field in allowed_fields:
-                fields_query.append(f"{field} = %s")
-                values.append(value)
+                query.append(f"{field} = {value},")
             
-        if not fields_query:
+        if query == "":
             return jsonify({"error": "No data provided to update"}), 400
-            
-        values.append(patient_id)
-
-        query =f"UPDATE patient SET {', '.join(fields_query)} WHERE id = %s", (patient_id,)
-        cursor.execute(query,values) 
+        
+        querySQL =f"UPDATE patient SET {query} WHERE id = %s", (patient_id,)
+        cursor.execute(querySQL) 
         db.commit()
 
         if cursor.rowcount == 0:
