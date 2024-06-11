@@ -59,6 +59,11 @@ def put_patient(patient_id):
         ##return querySQL
         cursor.execute(querySQL) 
         db.commit()
+
+        if cursor.rowcount == 0:
+            return jsonify({"error": "Patient not found"}), 404
+        
+        return jsonify({"message": "Patient updated successfully"}), 200
         
     except Exception as e:
         db.rollback()
