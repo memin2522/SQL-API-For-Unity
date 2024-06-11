@@ -50,12 +50,13 @@ def put_patient(patient_id):
         for field, value in data.items():
             if field in allowed_fields:
                 query += (f"{field} = {value},")
-                return query
+                
             
         if query == "":
             return jsonify({"error": "No data provided to update"}), 400
         
         querySQL =f"UPDATE patient SET {query} WHERE id = {patient_id}"
+        return querySQL
         cursor.execute(querySQL) 
         db.commit()
 
