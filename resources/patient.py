@@ -56,7 +56,6 @@ def put_patient(patient_id):
             return jsonify({"error": "No data provided to update"}), 400
         
         querySQL =f"UPDATE patient SET {query} WHERE id = {patient_id};"
-        return querySQL
         cursor.execute(querySQL) 
         db.commit()
 
