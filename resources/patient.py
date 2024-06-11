@@ -59,7 +59,7 @@ def put_patient(patient_id):
             
         values.append(patient_id)
 
-        query =f"UPDATE patient SET {', '.join(fields_query)} WHERE id = %s"
+        query =f"UPDATE patient SET {', '.join(fields_query)} WHERE id = %s", (patient_id,)
         cursor.execute(query,values) 
         db.commit()
 
