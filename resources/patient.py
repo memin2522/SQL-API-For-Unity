@@ -25,11 +25,11 @@ def get_patient(patient_id):
         cursor.close()
 
 @blp.delete("/patient/<string:patient_id>")    
-def delete(patient_id):
+def delete_patient(patient_id):
     db = get_db()
     cursor = db.cursor(dictionary=True)
     try:
-        cursor.execute(f"DELETE FROM patient WHERE id = %s;", patient_id)
+        cursor.execute(f"DELETE FROM patient WHERE id = %s;", (patient_id,))
         db.commit()
         return jsonify({"message":"Item Deleted"}), 200
     except Exception as e:
@@ -39,7 +39,7 @@ def delete(patient_id):
             cursor.close()
 
 @blp.put("/patient/<string:patient_id>")       
-def put(patient_id):
+def put_patient(patient_id):
     db = get_db()
     cursor = db.cursor(dictionary=True)
     try:
