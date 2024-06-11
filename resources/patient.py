@@ -1,14 +1,13 @@
 from flask import (
     jsonify, 
-    request
+    request,
+    Blueprint
 )
-from flask_smorest import Blueprint, abort
 from flask.views import MethodView
-from schemas import PatienSchema, PatienUpdateSchema
-from ..db import get_db
+from prototipe_app.db import get_db
 
 
-blp = Blueprint("Patients", __name__, description="Operations on patients")
+blp = Blueprint("Patients", __name__)
 
 @blp.route("/patient/<string:patient_id>")
 class Patient(MethodView):

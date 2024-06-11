@@ -1,5 +1,5 @@
 from flask import Flask 
-from flask_smorest import Api
+##from flask_smorest import Api
 from ip_whitelist import grant_access
 from . import db
 from .routes import main
@@ -14,7 +14,6 @@ def create_app():
     
     db.init_app(app)
     app.register_blueprint(main)
+    app.register_blueprint(PatientBlueprint)
 
-    api = Api(app)
-    api.register_blueprint(PatientBlueprint)
     return app
