@@ -10,11 +10,11 @@ from prototipe_app.db import get_db
 blp = Blueprint("Patients", __name__)
 
 @blp.get("/patient/<string:patient_id>")
-def get(patient_id):
+def get_patient(patient_id):
     db = get_db()
     cursor = db.cursor(dictionary=True)
     try:
-        cursor.execute("SELECT * FROM patient WHERE id = %s;", patient_id)
+        cursor.execute("SELECT * FROM patient WHERE id = %s;", (patient_id,))
         patient = cursor.fetchone()
         if patient is None:
             return jsonify({"error": "Patient not found"}), 404
