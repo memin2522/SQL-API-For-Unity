@@ -9,7 +9,6 @@ from prototipe_app.db import get_db
 
 blp = Blueprint("Patients", __name__)
 
-@blp.route("/patient/<string:patient_id>")
 class Patient(MethodView):
     def get(self, patient_id):
         db = get_db()
@@ -73,3 +72,4 @@ class Patient(MethodView):
         finally:
             cursor.close()
 
+blp.add_url_rule('/patient/<string:patient_id>', view_func=Patient.as_view('patient'))
