@@ -49,7 +49,7 @@ def put_patient(patient_id):
         query = ""
         for field, value in data.items():
             if field in allowed_fields:
-                query += (f"{field} = '{value}', ")
+                query += (f",{field} = '{value}' ")
                 
             
         if query == "":
